@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Listings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Address</th>
+      <th>Alt</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Directions</th>
+      <th>Hours</th>
+      <th>Lat</th>
+      <th>Long</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Tag</th>
+      <th>Url</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Fax</th>
+      <th>Image1</th>
+      <th>Image2</th>
+      <th>Image3</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @listings.each do |listing| %>
+      <tr>
+        <td><%= listing.address %></td>
+        <td><%= listing.alt %></td>
+        <td><%= listing.category %></td>
+        <td><%= listing.description %></td>
+        <td><%= listing.directions %></td>
+        <td><%= listing.hours %></td>
+        <td><%= listing.lat %></td>
+        <td><%= listing.long %></td>
+        <td><%= listing.name %></td>
+        <td><%= listing.price %></td>
+        <td><%= listing.tag %></td>
+        <td><%= listing.url %></td>
+        <td><%= listing.phone %></td>
+        <td><%= listing.email %></td>
+        <td><%= listing.fax %></td>
+        <td><%= listing.image1 %></td>
+        <td><%= listing.image2 %></td>
+        <td><%= listing.image3 %></td>
+        <td><%= link_to 'Show', listing %></td>
+        <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
+        <td><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Listing', new_listing_path %>
