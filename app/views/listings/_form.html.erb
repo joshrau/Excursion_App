@@ -13,7 +13,11 @@
 
   <div class="field">
     <%= f.label :address %><br>
-    <%= f.text_field :address %>
+      <% if @voyage_sections["address"] %>
+      <%= f.text_field :address, value: @voyage_sections["address"] %>
+      <% else %>
+      <%= f.text_field :address %>
+      <% end %>
   </div>
   <div class="field">
     <%= f.label :alt %><br>
@@ -21,7 +25,11 @@
   </div>
   <div class="field">
     <%= f.label :category %><br>
-    <%= f.text_field :category %>
+    <% if @voyage_sections["category"] %>
+      <%= f.text_field :category, value:  @voyage_sections["category"] %>
+      <% else %>
+      <%= f.text_field :category %>
+      <% end %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
