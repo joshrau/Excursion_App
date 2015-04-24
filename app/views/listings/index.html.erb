@@ -2,6 +2,14 @@
 
 <h1>Listing Listings</h1>
 
+<%= form_tag new_listing_path, method: 'GET' do %>
+  <%= text_field_tag :location, nil, placeholder: "location" %><br />
+  <%= text_field_tag :level_one, nil, placeholder: "level_one" %><br />
+  <%= text_field_tag :level_two, nil, placeholder: "level_two" %><br />
+  <%= text_field_tag :level_three, nil, placeholder: "level_three" %><br />
+  <%= submit_tag 'New Listing' %>
+  <% end %>
+
 <table>
   <thead>
     <tr>

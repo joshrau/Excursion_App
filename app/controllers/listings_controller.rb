@@ -6,6 +6,8 @@ class ListingsController < ApplicationController
   def index
     @listings = Listing.all
 
+
+
     respond_to do |format|
       format.html
       format.xml { render :json => @listings }
@@ -20,16 +22,16 @@ class ListingsController < ApplicationController
   # GET /listings/new
   def new
     @listing = Listing.new
-    @location = "Chiang_Mai"
-    @address = "http://www.wikisherpa.com/api/1/page/en/Chiang_Mai"
+    @location = params[:location]
+    @address = "http://www.wikisherpa.com/api/1/page/en/"+@location
     @voyage_get = RestClient.get(@address)
     @voyage_json = JSON.load @voyage_get
-    @level_one = 0
-    @level_two = 0
-    @level_three = 0
+    @level_one = params[:level_one].to_i
+    @level_two = params[:level_two].to_i
+    @level_three = params[:level_three].to_i
     @voyage_sections = @voyage_json["sections"][@level_one]["sections"][@level_two]["listings"][@level_three]
     # @voyage_nested_sections = @voyage_sections["sections"]
-    puts @voyage_result
+   
   end
 
   # GET /listings/1/edit
