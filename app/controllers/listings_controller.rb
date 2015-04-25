@@ -19,6 +19,10 @@ class ListingsController < ApplicationController
   def show
   end
 
+  def check
+
+  end
+
   # GET /listings/new
   def new
     @listing = Listing.new
@@ -36,6 +40,7 @@ class ListingsController < ApplicationController
 
   # GET /listings/1/edit
   def edit
+    @listing = Listing.find(params[:id])
   end
 
   # POST /listings

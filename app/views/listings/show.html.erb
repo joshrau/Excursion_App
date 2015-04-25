@@ -1,94 +1,101 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @listing.address %>
-</p>
 
-<p>
-  <strong>Alt:</strong>
-  <%= @listing.alt %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+      <p>
+        <strong>Address:</strong>
+        <%= @listing.address %>
+      </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @listing.category %>
-</p>
+      <p>
+        <strong>Alt:</strong>
+        <%= @listing.alt %>
+      </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @listing.description %>
-</p>
+      <p>
+        <strong>Category:</strong>
+        <%= @listing.category %>
+      </p>
 
-<p>
-  <strong>Directions:</strong>
-  <%= @listing.directions %>
-</p>
+      <p>
+        <strong>Description:</strong>
+        <%= @listing.description %>
+      </p>
 
-<p>
-  <strong>Hours:</strong>
-  <%= @listing.hours %>
-</p>
+      <p>
+        <strong>Directions:</strong>
+        <%= @listing.directions %>
+      </p>
 
-<p>
-  <strong>Lat:</strong>
-  <%= @listing.lat %>
-</p>
+      <p>
+        <strong>Hours:</strong>
+        <%= @listing.hours %>
+      </p>
 
-<p>
-  <strong>Long:</strong>
-  <%= @listing.long %>
-</p>
+      <p>
+        <strong>Lat:</strong>
+        <%= @listing.lat %>
+      </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @listing.name %>
-</p>
+      <p>
+        <strong>Long:</strong>
+        <%= @listing.long %>
+      </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @listing.price %>
-</p>
+      <p>
+        <strong>Name:</strong>
+        <%= @listing.name %>
+      </p>
 
-<p>
-  <strong>Tag:</strong>
-  <%= @listing.tag %>
-</p>
+      <p>
+        <strong>Price:</strong>
+        <%= @listing.price %>
+      </p>
 
-<p>
-  <strong>Url:</strong>
-  <%= @listing.url %>
-</p>
+      <p>
+        <strong>Tag:</strong>
+        <%= @listing.tag %>
+      </p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @listing.phone %>
-</p>
+      <p>
+        <strong>Url:</strong>
+        <%= @listing.url %>
+      </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @listing.email %>
-</p>
+      <p>
+        <strong>Phone:</strong>
+        <%= @listing.phone %>
+      </p>
 
-<p>
-  <strong>Fax:</strong>
-  <%= @listing.fax %>
-</p>
+      <p>
+        <strong>Email:</strong>
+        <%= @listing.email %>
+      </p>
 
-<p>
-  <strong>Image1:</strong>
-  <%= @listing.image1 %>
-</p>
+      <p>
+        <strong>Fax:</strong>
+        <%= @listing.fax %>
+      </p>
 
-<p>
-  <strong>Image2:</strong>
-  <%= @listing.image2 %>
-</p>
+      <p>
+        <strong>Image1:</strong>
+        <%= @listing.image1 %>
+      </p>
 
-<p>
-  <strong>Image3:</strong>
-  <%= @listing.image3 %>
-</p>
+      <p>
+        <strong>Image2:</strong>
+        <%= @listing.image2 %>
+      </p>
+
+      <p>
+        <strong>Image3:</strong>
+        <%= @listing.image3 %>
+      </p>
+    </div>  
+  </div>    
+</div>
 
 <%= link_to 'Edit', edit_listing_path(@listing) %> |
 <%= link_to 'Back', listings_path %>
