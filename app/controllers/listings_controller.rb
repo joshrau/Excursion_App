@@ -7,6 +7,52 @@ class ListingsController < ApplicationController
     @listings = Listing.all
 
 
+    if params[:location] == nil
+      @location = "Chiang_Mai"
+    else
+      @location = params[:location]
+    end
+
+     if params[:level_one].to_i == nil
+      @level_one = 0 
+    else
+      @level_one = params[:level_one].to_i
+    end
+
+    if params[:level_two].to_i == nil
+      @level_two = 0 
+    else
+      @level_two = params[:level_two].to_i
+    end
+
+    if params[:level_three].to_i == nil
+      @level_three = 0 
+    else
+      @level_three = params[:level_three].to_i
+    end
+    
+ 
+    @address = "http://www.wikisherpa.com/api/1/page/en/"+@location
+    @voyage_get = RestClient.get(@address)
+    @voyage_json = JSON.load @voyage_get
+
+   # @voyage_json["sections"][@level_one].class ||
+   # @voyage_json["sections"][@level_one]["sections"][@level_two].class ||
+
+    if @voyage_json["sections"].class == NilClass
+      @listings_one = "No Sections"
+    elsif  @voyage_json["sections"][@level_one]["sections"].class == NilClass
+      @listings_one = @voyage_json["sections"].count
+      @listings_two = "No Sub-sections"
+    elsif  @voyage_json["sections"][@level_one]["sections"][@level_two]["listings"].class == NilClass
+      @listings_one = @voyage_json["sections"].count
+      @listings_two = @voyage_json["sections"][@level_one]["sections"].count
+      @listings_three = "No Listings"
+    else 
+      @listings_one = @voyage_json["sections"].count
+      @listings_two = @voyage_json["sections"][@level_one]["sections"].count
+      @listings_three = @voyage_json["sections"][@level_one]["sections"][@level_two]["listings"].count
+    end
 
     respond_to do |format|
       format.html
@@ -26,13 +72,35 @@ class ListingsController < ApplicationController
   # GET /listings/new
   def new
     @listing = Listing.new
-    @location = params[:location]
+
+    if @location != params[:location]
+      @location = "Chiang_Mai"
+    else
+      @location != params[:location]
+    end
+
     @address = "http://www.wikisherpa.com/api/1/page/en/"+@location
     @voyage_get = RestClient.get(@address)
     @voyage_json = JSON.load @voyage_get
-    @level_one = params[:level_one].to_i
-    @level_two = params[:level_two].to_i
-    @level_three = params[:level_three].to_i
+
+    if @level_one != params[:level_one].to_i
+      @level_one = 0 
+    else
+      @level_one = params[:level_one].to_i
+    end
+
+    if @level_two != params[:level_two].to_i
+      @level_two = 0 
+    else
+      @level_two = params[:level_two].to_i
+    end
+
+    if @level_three != params[:level_three].to_i
+      @level_three = 0 
+    else
+      @level_three = params[:level_three].to_i
+    end
+
     @voyage_sections = @voyage_json["sections"][@level_one]["sections"][@level_two]["listings"][@level_three]
     # @voyage_nested_sections = @voyage_sections["sections"]
    
