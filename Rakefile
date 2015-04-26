@@ -6,7 +6,7 @@ require File.expand_path('../config/application', __FILE__)
 Rails.application.load_tasks
 
 
-#   Prefix Verb   URI Pattern                    Controller#Action
+#       Prefix Verb   URI Pattern                    Controller#Action
 #         new_user_session GET    /users/sign_in(.:format)       devise/sessions#new
 #             user_session POST   /users/sign_in(.:format)       devise/sessions#create
 #     destroy_user_session DELETE /users/sign_out(.:format)      devise/sessions#destroy
@@ -30,4 +30,6 @@ Rails.application.load_tasks
 #                          PATCH  /listings/:id(.:format)        listings#update
 #                          PUT    /listings/:id(.:format)        listings#update
 #                          DELETE /listings/:id(.:format)        listings#destroy
+#           listings_check GET    /listings/check(.:format)      listings#check
 #                     root GET    /                              listings#index
+

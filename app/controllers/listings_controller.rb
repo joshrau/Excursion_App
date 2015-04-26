@@ -1,11 +1,13 @@
 class ListingsController < ApplicationController
-  before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  before_action :set_listing, only: [:show, :edit, :update, :destroy, :check]
 
   # GET /listings
   # GET /listings.json
   def index
-    @listings = Listing.all
+    
+    if params[:commit] = "check"
 
+    @listings = Listing.all
 
     if params[:location] == nil
       @location = "Chiang_Mai"
@@ -58,6 +60,11 @@ class ListingsController < ApplicationController
       format.html
       format.xml { render :json => @listings }
     end
+
+  else
+    redirect_to 'new'
+  end
+
   end
 
   # GET /listings/1
@@ -66,40 +73,49 @@ class ListingsController < ApplicationController
   end
 
   def check
-
+    @listings = Listing.all
+    binding.pry
+    if params[:commit] = "check"
+      # Do stuff for first button submit
+    elsif params[:check_tag]
+      # Do stuff for second button submit
+    end
   end
 
   # GET /listings/new
   def new
+    binding.pry
     @listing = Listing.new
 
-    if @location != params[:location]
+    if params[:location] == nil
       @location = "Chiang_Mai"
     else
-      @location != params[:location]
+      @location = params[:location]
+    end
+
+     if params[:level_one].to_i == nil
+      @level_one = 0 
+    else
+      @level_one = params[:level_one].to_i
+    end
+
+    if params[:level_two].to_i == nil
+      @level_two = 0 
+    else
+      @level_two = params[:level_two].to_i
+    end
+
+    if params[:level_three].to_i == nil
+      @level_three = 0 
+    else
+      @level_three = params[:level_three].to_i
     end
 
     @address = "http://www.wikisherpa.com/api/1/page/en/"+@location
     @voyage_get = RestClient.get(@address)
     @voyage_json = JSON.load @voyage_get
 
-    if @level_one != params[:level_one].to_i
-      @level_one = 0 
-    else
-      @level_one = params[:level_one].to_i
-    end
-
-    if @level_two != params[:level_two].to_i
-      @level_two = 0 
-    else
-      @level_two = params[:level_two].to_i
-    end
-
-    if @level_three != params[:level_three].to_i
-      @level_three = 0 
-    else
-      @level_three = params[:level_three].to_i
-    end
+    
 
     @voyage_sections = @voyage_json["sections"][@level_one]["sections"][@level_two]["listings"][@level_three]
     # @voyage_nested_sections = @voyage_sections["sections"]
@@ -155,6 +171,7 @@ class ListingsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_listing
       @listing = Listing.find(params[:id])
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
